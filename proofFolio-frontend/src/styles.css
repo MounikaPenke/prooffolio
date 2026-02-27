@@ -1,0 +1,87 @@
+/* src/styles.css (or src/index.css) - Final global styles */
+
+/* Tailwind Directives - must be first */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom dark theme variables (match your screenshots) */
+:root {
+  --dark-bg: #0a0a1a;
+  --dark-card: #111122;
+  --dark-border: #1e1e38;
+  --teal-accent: #00d1b2;
+  --teal-dark: #009b88;
+  --gray-text: #a0a0c0;
+  --red-wrong: #ff4d4f;
+  --green-proof: #52c41a;
+}
+
+/* Apply to body & html */
+@layer base {
+  html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[var(--dark-bg)] text-white min-h-screen;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: "liga" 1, "calt" 1; /* modern ligatures */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.01em;
+  }
+
+  /* Headings - bold & tight like screenshots */
+  h1, h2, h3, h4 {
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+  }
+
+  h1 { font-size: clamp(2.5rem, 6vw, 4rem); }
+  h2 { font-size: clamp(2rem, 5vw, 3rem); }
+  h3 { font-size: clamp(1.5rem, 4vw, 2rem); }
+
+  /* Body text */
+  p, li, .text-gray-text {
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  /* Links */
+  a {
+    @apply text-teal-accent hover:text-teal-dark transition-colors;
+  }
+
+  /* Form inputs (for SignupPage, etc.) */
+  input, textarea, select {
+    @apply bg-dark-card border-dark-border text-white placeholder-gray-text;
+    @apply focus:border-teal-accent focus:ring-1 focus:ring-teal-accent/50;
+    @apply rounded-lg px-4 py-3 outline-none transition;
+  }
+
+  /* Buttons (global base) */
+  button {
+    @apply transition-all duration-200;
+  }
+}
+
+/* Optional: smooth scroll for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Fix any unwanted scrollbar or layout shift */
+* {
+  box-sizing: border-box;
+}
+
+/* Hide default focus outline, use custom ring instead */
+*:focus-visible {
+  outline: none;
+}
